@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -72,6 +73,9 @@ public:
 
     string getUsername() const { return username; }
     Role getRole() const { return role; }
+    bool validatePassword(const string& inputPass) const {
+        return password == inputPass;
+    }
 
     void showPersonalInfo() const {
         cout << "\n--- Thông tin cá nhân ---\n";
@@ -129,11 +133,9 @@ int main() {
     vector<Group> groups;
     OTP otpSystem;
 
-    // Tạo tài khoản quản lý mặc định
     UserAccount manager("admin", "admin123", "Nguyễn Quản Lý", Role::Manager);
     users.push_back(manager);
 
-    // Tạo nhóm mặc định
     Group groupA("Nhóm A");
     groups.push_back(groupA);
 
@@ -154,7 +156,7 @@ int main() {
 
         bool found = false;
         for (auto& user : users) {
-            if (user.getUsername() == username && password == "admin123") {
+            if (user.getUsername() == username && user.validatePassword(password)) {
                 found = true;
                 cout << "\n✅ Đăng nhập thành công!\n";
                 user.showPersonalInfo();
@@ -177,10 +179,7 @@ int main() {
                     if (opt == 1) {
                         UserAccount newAcc = UserAccount::createNewAccount();
                         users.push_back(newAcc);
-
-                        // Gán tài khoản vào nhóm đầu tiên (ví dụ đơn giản)
                         groups[0].addMember(newAcc.getUsername());
-
                         cout << "✅ Tạo tài khoản thành công.\n";
                     } else if (opt == 2) {
                         string targetUsername;
