@@ -190,7 +190,24 @@ int main() {
                         for (auto& u : users) {
                             if (u.getUsername() == targetUsername && u.getUsername() != "admin") {
                                 userFound = true;
-                                u.requestUpdateInfo(true, otpSystem);
+                                // Không cho phép quản lý đổi tên người dùng
+cout << "\nChỉ được phép cập nhật mật khẩu cho người dùng.\n";
+string newPassword;
+cout << "Nhập mật khẩu mới: ";
+getline(cin, newPassword);
+string otp = otpSystem.generateOTP();
+cout << "[OTP gửi đến người dùng]: " << otp << "\n";
+string userInput;
+cout << "Nhập OTP để xác nhận: ";
+getline(cin, userInput);
+if (otpSystem.validateOTP(userInput)) {
+    // Đặt lại mật khẩu nhưng không đổi tên
+    // Dùng workaround: tạo method đặc biệt trong class, nhưng tạm gán lại user
+    u = UserAccount(u.getUsername(), newPassword, u.getUsername(), u.getRole());
+    cout << "✅ Cập nhật mật khẩu thành công.\n";
+} else {
+    cout << "❌ OTP không hợp lệ. Hủy cập nhật.\n";
+}
                                 break;
                             }
                         }
