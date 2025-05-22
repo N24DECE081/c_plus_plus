@@ -94,9 +94,7 @@ private:
     Wallet wallet;
 
 public:
-    // Default constructor để hỗ trợ map::operator[]
-    User()
-        : username(""), role(Role::User), wallet("DEFAULT_WALLET", 0) {}
+    User() : username(""), role(Role::User), wallet("DEFAULT_WALLET", 0) {}
 
     User(const string& uname, Role r, const string& walletID, int initialBalance = 0)
         : username(uname), role(r), wallet(walletID, initialBalance) {}
@@ -115,6 +113,7 @@ public:
 class WalletSystem {
 private:
     map<string, User> users;
+    Wallet masterWallet; // ví tổng
     OTP otp;
 
     void saveTransactionToFile(const Transaction& tx) {
@@ -126,10 +125,24 @@ private:
     }
 
 public:
+    WalletSystem() : masterWallet("MASTER_WALLET", 1000000) {}
+
     void createUser(const string& username, Role role, int initialBalance = 0) {
         string walletID = "WALLET_" + username;
-        users[username] = User(username, role, walletID, initialBalance);
-        cout << "✅ Tạo người dùng " << username << " với ví " << walletID << " thành công.\n";
+
+        if (masterWallet.withdraw(initialBalance)) {
+            users[username] = User(username, role, walletID, initialBalance);
+            cout << "✅ Tạo người dùng " << username << " với ví " << walletID << " thành công.\n";
+
+            Transaction tx = {
+                masterWallet.getID(), walletID, initialBalance, "Cấp điểm ban đầu"
+            };
+            masterWallet.addTransaction(tx);
+            users[username].getWallet().addTransaction(tx);
+            saveTransactionToFile(tx);
+        } else {
+            cout << "❌ Ví tổng không đủ điểm để cấp cho người dùng mới.\n";
+        }
     }
 
     void transfer(const string& fromUser, const string& toUser, int amount) {
@@ -150,6 +163,11 @@ public:
 
         if (!otp.validateOTP(inputOTP)) {
             cout << "❌ OTP không hợp lệ. Hủy giao dịch.\n";
+            Transaction failTx = {
+                senderWallet.getID(), receiverWallet.getID(), amount, "Thất bại - Sai OTP"
+            };
+            senderWallet.addTransaction(failTx);
+            saveTransactionToFile(failTx);
             return;
         }
 
@@ -162,10 +180,7 @@ public:
         }
 
         Transaction tx = {
-            senderWallet.getID(),
-            receiverWallet.getID(),
-            amount,
-            status
+            senderWallet.getID(), receiverWallet.getID(), amount, status
         };
 
         senderWallet.addTransaction(tx);
@@ -175,7 +190,7 @@ public:
         if (status == "Thành công")
             cout << "✅ Giao dịch thành công.\n";
         else
-            cout << "❌ Giao dịch thất bại: Không đủ số dư.\n";
+            cout << "❌ Giao dịch thất bại: " << status << "\n";
     }
 
     void showUserInfo(const string& username) {
@@ -207,10 +222,9 @@ public:
 
 // ---------------- MAIN ----------------
 int main() {
-    setlocale(LC_ALL, "");// gỡ lỗi tiếng việt
+    setlocale(LC_ALL, "");
     WalletSystem system;
 
-    // Tạo người dùng mẫu
     system.createUser("admin", Role::Manager, 10000);
     system.createUser("alice", Role::User, 1000);
     system.createUser("bob", Role::User, 500);
@@ -233,8 +247,7 @@ int main() {
         cout << "2. Xem thông tin ví\n";
         if (role == Role::Manager) {
             cout << "3. Xem toàn bộ giao dịch hệ thống\n";
-            cout << "4. Tạo người dùng mới\n";
-            cout << "5. Thoát\n";
+            cout << "4. Thoát\n";
         } else {
             cout << "3. Thoát\n";
         }
@@ -242,7 +255,7 @@ int main() {
         cout << "Chọn: ";
         cin >> choice;
 
-        if ((role == Role::User && choice == 3) || (role == Role::Manager && choice == 5)) break;
+        if ((role == Role::User && choice == 3) || (role == Role::Manager && choice == 4)) break;
 
         if (choice == 1) {
             string toUser;
@@ -256,14 +269,6 @@ int main() {
             system.showUserInfo(currentUser);
         } else if (role == Role::Manager && choice == 3) {
             system.showAllTransactions();
-        } else if (role == Role::Manager && choice == 4) {
-            string uname;
-            int balance;
-            cout << "Tên người dùng mới: ";
-            cin >> uname;
-            cout << "Số điểm ban đầu: ";
-            cin >> balance;
-            system.createUser(uname, Role::User, balance);
         } else {
             cout << "❌ Lựa chọn không hợp lệ.\n";
         }
