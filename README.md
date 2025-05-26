@@ -31,12 +31,15 @@
 - OTP được sinh ngẫu nhiên để xác minh khi cần.
 
 ### Phân quyền người dùng (PHAN_B.cpp)
-- **Người dùng thường**: chỉ được thay đổi thông tin cá nhân (cần OTP xác nhận).
-- **Người quản lý**:
-  - Tạo tài khoản hộ người khác.
-  - Cập nhật thông tin người dùng khác (chỉ mật khẩu).
-  - Theo dõi danh sách nhóm.
-- OTP được yêu cầu khi cập nhật thông tin.
+**Người dùng thường:**
+- Đăng nhập và xem thông tin cá nhân.
+- Cập nhật thông tin cá nhân (họ tên, mật khẩu, email, số điện thoại) → yêu cầu OTP xác minh.
+**Người quản lý:**
+- Tạo tài khoản mới cho người khác (đầy đủ thông tin).
+- Cập nhật toàn bộ thông tin của người dùng khác (trừ username) → yêu cầu OTP xác minh từ chủ tài khoản.
+- Xem và lưu danh sách nhóm thành viên vào file .txt.
+- OTP được áp dụng cho mọi thao tác cập nhật thông tin (cá nhân hoặc người khác).
+- Dữ liệu nhóm được ghi vào file theo tên nhóm (ví dụ: Nhóm A.txt).
 
 ### Quản lý ví & giao dịch (PHANC.cpp)
 - Mỗi người dùng có một ví định danh (WALLET_ID).
@@ -103,7 +106,7 @@ g++ PHANC.cpp -o phanc
 2. **PHAN_B.cpp**:
    - Đăng nhập theo vai trò.
    - Người dùng thường: xem/sửa thông tin cá nhân (OTP).
-   - Người quản lý: tạo tài khoản, sửa mật khẩu người dùng khác (OTP), xem nhóm.
+   - Người quản lý: tạo tài khoản hộ, sửa thông tin người dùng khác trừ username (cần OTP từ chủ tài khoản), xem nhóm.
 
 3. **PHANC.cpp**:
    - Đăng nhập để quản lý ví.
@@ -114,15 +117,15 @@ g++ PHANC.cpp -o phanc
 
 ## Kiểm thử chức năng (Input / Output)
 
-| Chức năng               | Input                                  | Output                            |
-|-------------------------|-----------------------------------------|----------------------------------|
-| Đăng ký tài khoản       | username, password, email,…             | Tạo tài khoản thành công         |
-| Đăng nhập               | username + password                     | Đăng nhập thành công/thất bại    |
-| Đổi mật khẩu            | username + old/new password             | Đổi mật khẩu thành công          |
-| Giao dịch điểm          | người nhận + số điểm + OTP              | Giao dịch thành công / lỗi       |
-| Cập nhật thông tin      | tên mới, mật khẩu mới + OTP             | Cập nhật thành công / OTP sai    |
-| Sao lưu dữ liệu         | -                                       | Ghi backup.txt thành công        |
-| Xem lịch sử giao dịch   | -                                       | Hiển thị chi tiết                |
+| Chức năng               | Input                                                     | Output                           |
+|-------------------------|---------------------------------------------------------  |----------------------------------|
+| Đăng ký tài khoản       | username, password, name, email, stđ                      | Tạo tài khoản thành công         |
+| Đăng nhập               | username + password                                       | Đăng nhập thành công/thất bại    |
+| Đổi mật khẩu            | username + old/new password                               | Đổi mật khẩu thành công          |
+| Giao dịch điểm          | người nhận + số điểm + OTP                                | Giao dịch thành công / lỗi       |
+| Cập nhật thông tin      | tên mới,email mới,sđt mới, mật khẩu mới + OTP             | Cập nhật thành công / OTP sai    |
+| Sao lưu dữ liệu         | -                                                         | Ghi backup.txt thành công        |
+| Xem lịch sử giao dịch   | -                                                         | Hiển thị chi tiết                |
 
 ---
 
