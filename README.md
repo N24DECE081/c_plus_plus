@@ -12,12 +12,12 @@
 
 ## Thành viên nhóm & vai trò
 
-| Họ và Tên               | Vai trò                        | Công việc được giao                                                  |
-|-------------------------|---------------------------------|---------------------------------------------------------------------|
-| Lại Thu Hiền            | Thực hiện phần A               | Quản lý tài khoản người dùng: đăng ký, đăng nhập, OTP                |
-| Nguyễn Dương Thanh Mai  | Thực hiện phần B               | Phân quyền người dùng, cập nhật thông tin, nhóm người dùng           |
-| Nguyễn Thanh Tuyền      | Thực hiện phần C               | Giao dịch ví điểm, OTP cho chuyển điểm, ghi lịch sử                  |
-| La Vĩnh Tiến            | Thực hiện phần C               | Giao dịch ví điểm, OTP cho chuyển điểm, ghi lịch sử                  |
+| Họ và Tên               | Nhiệm vụ                                       | Công việc chi tiết                                                   |
+|-------------------------|---------------------------------               | ---------------------------------------------------------------------|
+| Lại Thu Hiền            | Thực hiện phần A                               | Quản lý tài khoản người dùng: đăng ký, đăng nhập, OTP                |
+| Nguyễn Dương Thanh Mai  | Thực hiện phần B                               | Phân quyền người dùng, cập nhật thông tin, nhóm người dùng           |
+| Nguyễn Thanh Tuyền      | Thực hiện phần C                               | Giao dịch ví điểm ,,tổng hợp 3 phần                                  |
+| La Vĩnh Tiến            | Thực hiện phần C                               | OTP cho chuyển điểm, ghi lịch sử ,viet readme                        |
 
 ---
 
