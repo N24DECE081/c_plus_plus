@@ -379,6 +379,7 @@ public:
 int main() {
     setlocale(LC_ALL, "");
     SystemManager sys;
+    sys.restoreFromBackup();  //  Đọc dữ liệu từ file
     sys.mainMenu();
     return 0;
 }
