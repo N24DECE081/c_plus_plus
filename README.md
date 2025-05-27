@@ -15,7 +15,7 @@
 
 | Họ và Tên               | Nhiệm vụ                                       | Công việc chi tiết                                                   |
 |-------------------------|------------------------------------------------|------------------------------------------------------------------------|
-| Lê Thị Thu Hiền         | Thực hiện phần A                               | Khởi tạo hệ thống, OTP, hàm main                                     |
+| Lại Thu Hiền            | Thực hiện phần A                               | Khởi tạo hệ thống, OTP, hàm main                                     |
 | La Vĩnh Tiến            | Thực hiện phần B                               | Class User, Group, cập nhật thông tin, backup                        |
 | Nguyễn Thanh Tuyền      | Thực hiện phần C                               | Wallet, giao dịch, lịch sử, master wallet                            |
 | Nguyễn Dương Thanh Mai  | Giao diện quản lý                              | Giao diện admin, chuyển điểm, thống kê                               |
