@@ -217,6 +217,40 @@ Chọn: 4
 4. Sao lưu tài khoản
 5. Thoát
 Chọn: 5
+
+=== MENU CHÍNH ===
+1. Đăng nhập
+2. Đăng ký tài khoản
+3. Khôi phục từ backup
+4. Thoát
+Chọn: 2
+
+=== Đăng ký tài khoản ===
+Tên đăng nhập: bot2
+Mật khẩu (để trống để hệ thống tạo): bot2
+Họ tên: bot2
+Email: bot2@gmail.com
+SĐT: 222
+✅ Đã tạo tài khoản thành công với vai trò: Người dùng.
+
+=== MENU CHÍNH ===
+1. Đăng nhập
+2. Đăng ký tài khoản
+3. Khôi phục từ backup
+4. Thoát
+Chọn: 1
+
+=== Đăng nhập ===
+Tên đăng nhập: bot1
+Mật khẩu: bot11
+
+--- Thông tin người dùng ---
+Tên đăng nhập: bot1
+Họ tên: bot11
+Email: bot11@gmail.com
+SĐT: 1111
+Vai trò: Người dùng
+
 --- Menu người dùng ---
 1. Xem ví
 2. Chuyển điểm
@@ -229,6 +263,7 @@ Số điểm: 99
 [OTP (giả lập) được gửi: 680582]
 Nhập mã OTP: 680582
 ✅ Giao dịch thành công.
+
 --- Menu người dùng ---
 1. Xem ví
 2. Chuyển điểm
