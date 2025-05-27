@@ -122,6 +122,8 @@ Chạy chương trình:
   - Thao tác cập nhật hộ
 ## 💻 Minh họa thực thi chương trình (terminal)
 
+## 👤 Người dùng
+
 ```text
 === MENU CHÍNH ===
 1. Đăng nhập
@@ -276,6 +278,303 @@ Số điểm: 1
 [OTP (giả lập) được gửi: 26844]
 Nhập mã OTP: 26855
 ❌ Sai OTP.
+```
+
+## 🧑‍💼 Quản lý / Admin
+
+```text
+=== MENU CHÍNH ===
+1. Đăng nhập
+2. Đăng ký tài khoản
+3. Khôi phục từ backup
+4. Thoát
+Chọn: 1
+
+=== Đăng nhập ===
+Tên đăng nhập: admin
+Mật khẩu: admin123
+
+--- Thông tin người dùng ---
+Tên đăng nhập: admin
+Họ tên: Admin
+Email: admin@gmail.com
+SĐT: 0908765432
+Vai trò: Quản lý
+
+--- Menu quản lý ---
+1. Tạo tài khoản
+2. Xem nhóm
+3. Xem toàn bộ giao dịch
+4. Cập nhật người dùng khác
+5. Xem ví của chính mình
+6. Chuyển điểm cho người dùng
+7. Thoát
+Chọn: 1
+
+=== Đăng ký tài khoản ===
+Tên đăng nhập: bot3
+Mật khẩu (để trống để hệ thống tạo): 
+🔐 Mật khẩu tự sinh: E109k2mp
+Họ tên: bot3
+Email: bot3@gmail.com
+SĐT: 3333
+✅ Đã tạo tài khoản thành công với vai trò: Người dùng.
+
+--- Menu quản lý ---
+1. Tạo tài khoản
+2. Xem nhóm
+3. Xem toàn bộ giao dịch
+4. Cập nhật người dùng khác
+5. Xem ví của chính mình
+6. Chuyển điểm cho người dùng
+7. Thoát
+Chọn: 7
+
+=== MENU CHÍNH ===
+1. Đăng nhập
+2. Đăng ký tài khoản
+3. Khôi phục từ backup
+4. Thoát
+Chọn: 1
+
+=== Đăng nhập ===
+Tên đăng nhập: bot3
+Mật khẩu: E109k2mp
+🔐 Mật khẩu này là tạm thời. Vui lòng đổi mật khẩu mới: bot3
+✅ Đổi mật khẩu thành công.
+
+--- Thông tin người dùng ---
+Tên đăng nhập: bot3
+Họ tên: bot3
+Email: bot3@gmail.com
+SĐT: 3333
+Vai trò: Người dùng
+
+--- Menu người dùng ---
+1. Xem ví
+2. Chuyển điểm
+3. Cập nhật thông tin
+4. Sao lưu tài khoản
+5. Thoát
+Chọn: 5
+
+=== MENU CHÍNH ===
+1. Đăng nhập
+2. Đăng ký tài khoản
+3. Khôi phục từ backup
+4. Thoát
+Chọn: 1
+
+=== Đăng nhập ===
+Tên đăng nhập: admin
+Mật khẩu: admin123
+
+--- Thông tin người dùng ---
+Tên đăng nhập: admin
+Họ tên: Admin
+Email: admin@gmail.com
+SĐT: 0908765432
+Vai trò: Quản lý
+
+--- Menu quản lý ---
+1. Tạo tài khoản
+2. Xem nhóm
+3. Xem toàn bộ giao dịch
+4. Cập nhật người dùng khác
+5. Xem ví của chính mình
+6. Chuyển điểm cho người dùng
+7. Thoát
+Chọn: 2
+
+--- Nhóm: Nhóm A ---
+
+--- Thông tin người dùng ---
+Tên đăng nhập: bot11
+Họ tên: bot11
+Email: bot11@gmail.com
+SĐT: 1111
+Vai trò: Người dùng
+
+--- Thông tin người dùng ---
+Tên đăng nhập: bot2
+Họ tên: bot2
+Email: bot2@gmail.com
+SĐT: 2222
+Vai trò: Người dùng
+
+--- Thông tin người dùng ---
+Tên đăng nhập: admin
+Họ tên: Admin
+Email: admin@gmail.com
+SĐT: 0908765432
+Vai trò: Quản lý
+
+--- Thông tin người dùng ---
+Tên đăng nhập: bot3
+Họ tên: bot3
+Email: bot3@gmail.com
+SĐT: 3333
+Vai trò: Người dùng
+
+--- Menu quản lý ---
+1. Tạo tài khoản
+2. Xem nhóm
+3. Xem toàn bộ giao dịch
+4. Cập nhật người dùng khác
+5. Xem ví của chính mình
+6. Chuyển điểm cho người dùng
+7. Thoát
+Chọn: 3
+From: MASTER -> To: WALLET_admin | Amount: 5000 | Status: Cấp điểm cho Admin
+From: WALLET_bot11 -> To: WALLET_bot2 | Amount: 99 | Status: Thành công
+
+--- Menu quản lý ---
+1. Tạo tài khoản
+2. Xem nhóm
+3. Xem toàn bộ giao dịch
+4. Cập nhật người dùng khác
+5. Xem ví của chính mình
+6. Chuyển điểm cho người dùng
+7. Thoát
+Chọn: 4
+Nhập username: bot3
+
+Admin muốn cập nhật tài khoản người dùng (bot3):
+Nhập họ tên mới: bot33
+Nhập mật khẩu mới: bot33
+Nhập email mới: bot33@gmail.com
+Nhập số điện thoại mới: 333  
+
+ - Họ tên mới: bot33
+ - Mật khẩu mới: ********
+[OTP (giả lập) được gửi: 464035]
+
+[OTP đã được gửi đến người dùng (bot3)]: <ẩn>
+
+Người dùng (bot3) vui lòng nhập mã OTP để xác nhận:
+> 464035
+✅ Cập nhật thông tin thành công!
+
+--- Menu quản lý ---
+1. Tạo tài khoản
+2. Xem nhóm
+3. Xem toàn bộ giao dịch
+4. Cập nhật người dùng khác
+5. Xem ví của chính mình
+6. Chuyển điểm cho người dùng
+7. Thoát
+Chọn: 6
+Người nhận: bot3
+Số điểm: 10
+[OTP (giả lập) được gửi: 206777]
+Nhập mã OTP: 206777
+✅ Giao dịch thành công.
+
+--- Menu quản lý ---
+1. Tạo tài khoản
+2. Xem nhóm
+3. Xem toàn bộ giao dịch
+4. Cập nhật người dùng khác
+5. Xem ví của chính mình
+6. Chuyển điểm cho người dùng
+7. Thoát
+Chọn: 5
+Ví: WALLET_admin | Số dư: 4990 điểm
+
+--- Lịch sử ví WALLET_admin ---
+From: MASTER -> To: WALLET_admin | Amount: 5000 | Status: Cấp điểm cho Admin
+From: WALLET_admin -> To: WALLET_bot3 | Amount: 10 | Status: Admin chuyển điểm
+---
+--- Menu quản lý ---
+1. Tạo tài khoản
+2. Xem nhóm
+3. Xem toàn bộ giao dịch
+4. Cập nhật người dùng khác
+5. Xem ví của chính mình
+6. Chuyển điểm cho người dùng
+7. Thoát
+Chọn: 4
+Nhập username: bot2
+
+Admin muốn cập nhật tài khoản người dùng (bot2):
+Nhập họ tên mới: bot22
+Nhập mật khẩu mới: bot22
+Nhập email mới: bot22@gmail.com
+Nhập số điện thoại mới: 22 
+
+ - Họ tên mới: bot22
+ - Mật khẩu mới: ********
+[OTP (giả lập) được gửi: 111994]
+
+[OTP đã được gửi đến người dùng (bot2)]: <ẩn>
+
+Người dùng (bot2) vui lòng nhập mã OTP để xác nhận:
+> 123234
+❌ Sai OTP. Hủy cập nhật.
+
+--- Menu quản lý ---
+1. Tạo tài khoản
+2. Xem nhóm
+3. Xem toàn bộ giao dịch
+4. Cập nhật người dùng khác
+5. Xem ví của chính mình
+6. Chuyển điểm cho người dùng
+7. Thoát
+Chọn: 6
+Người nhận: admin
+❌ Không thể chuyển cho chính mình.
+
+--- Menu quản lý ---
+1. Tạo tài khoản
+2. Xem nhóm
+3. Xem toàn bộ giao dịch
+4. Cập nhật người dùng khác
+5. Xem ví của chính mình
+6. Chuyển điểm cho người dùng
+7. Thoát
+Chọn: 6
+Người nhận: bob2
+❌ Không tìm thấy người dùng.
+
+--- Menu quản lý ---
+1. Tạo tài khoản
+2. Xem nhóm
+3. Xem toàn bộ giao dịch
+4. Cập nhật người dùng khác
+5. Xem ví của chính mình
+6. Chuyển điểm cho người dùng
+7. Thoát
+Chọn: 6
+Người nhận: bot2
+Số điểm: 12000000
+[OTP (giả lập) được gửi: 640136]
+Nhập mã OTP: 640136
+❌ Số dư admin không đủ.
+
+--- Menu quản lý ---
+1. Tạo tài khoản
+2. Xem nhóm
+3. Xem toàn bộ giao dịch
+4. Cập nhật người dùng khác
+5. Xem ví của chính mình
+6. Chuyển điểm cho người dùng
+7. Thoát
+Chọn: 6
+Người nhận: bot2
+Số điểm: 10
+[OTP (giả lập) được gửi: 496686]
+Nhập mã OTP: 876543
+❌ Sai OTP. Hủy giao dịch.
+
+--- Menu quản lý ---
+1. Tạo tài khoản
+2. Xem nhóm
+3. Xem toàn bộ giao dịch
+4. Cập nhật người dùng khác
+5. Xem ví của chính mình
+6. Chuyển điểm cho người dùng
+7. Thoát
+Chọn: 7
 ```
 ---
 
