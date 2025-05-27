@@ -1,4 +1,3 @@
-// Giữ nguyên toàn bộ phần đầu
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -169,7 +168,7 @@ class SystemManager {
 public:
     SystemManager() : masterWallet("MASTER", 1000000) {
         users["admin"] = User("admin", "admin123", "Admin", "admin@gmail.com", "0908765432", Role::Manager);
-        // Cấp điểm cho admin từ ví MASTER
+        
         users["admin"].wallet.deposit(5000);
         Transaction tx = {"MASTER", users["admin"].wallet.getID(), 5000, "Cấp điểm cho Admin"};
         users["admin"].wallet.addTransaction(tx);
@@ -179,7 +178,7 @@ public:
         groups.push_back(Group("Nhóm A"));
     }
 
-   void restoreFromBackup() {
+  void restoreFromBackup() {
     ifstream file("backup_users.txt");
     if (!file) {
         cout << "Không tìm thấy backup.\n";
@@ -188,25 +187,39 @@ public:
 
     string line;
     int count = 0;
+    string adminPass = "admin123";
+    User adminUser;
+    if (users.count("admin")) {
+        adminUser = users["admin"];
+    } else {
+        adminUser = User("admin", adminPass, "Admin", "admin@gmail.com", "0908765432", Role::Manager);
+        adminUser.wallet.deposit(5000);
+        Transaction tx = {"MASTER", adminUser.wallet.getID(), 5000, "Cấp điểm cho Admin"};
+        adminUser.wallet.addTransaction(tx);
+        masterWallet.addTransaction(tx);
+        saveTransactionToFile(tx);
+    }
 
-    // Xóa hết người dùng cũ (trừ admin nếu muốn giữ) và nhóm
     users.clear();
     groups.clear();
+    groups.push_back(Group("Nhóm A"));
 
-    groups.push_back(Group("Nhóm A"));  // Tạo nhóm mặc định
-
+    // Đọc backup
     while (getline(file, line)) {
         User temp;
         temp.restoreFromBackupLine(line);
         users[temp.username] = temp;
-        groups[0].addMember(&users[temp.username]);  // Đưa user vào nhóm
-       cout << "✅ Đã khôi phục tài khoản: " << temp.username << " | Mật khẩu: " << temp.password << "\n";
-
+        groups[0].addMember(&users[temp.username]);
+        cout << "✅ Đã khôi phục tài khoản: " << temp.username << " | Mật khẩu: " << temp.password << "\n";
         count++;
     }
 
+    users["admin"] = adminUser;
+    groups[0].addMember(&users["admin"]);
+
     cout << "🎉 Khôi phục thành công " << count << " tài khoản từ backup.\n";
 }
+
 
 
     void registerUserAccount() {
