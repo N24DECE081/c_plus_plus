@@ -177,83 +177,119 @@ int main() {
     OTP otpSystem;
 
     users.push_back(new UserAccount("admin", "admin123", "Nguyễn Quản Lý", "admin@gmail.com", "0000000000", Role::Manager));
-
     Group groupA("Nhóm A");
     groups.push_back(groupA);
 
     while (true) {
         cout << "\n========== MENU CHÍNH ==========\n";
-        cout << "1. Đăng nhập\n2. Thoát\nChọn: ";
+        cout << "1. Đăng nhập\n";
+        cout << "2. Tạo tài khoản\n";
+        cout << "3. Thoát\nChọn: ";
         int choice;
         cin >> choice;
         cin.ignore();
 
-        if (choice == 2) break;
+        if (choice == 3) break;
 
-        string username, password;
-        cout << "\nTên đăng nhập: "; getline(cin, username);
-        cout << "Mật khẩu: "; getline(cin, password);
+        if (choice == 1) {
+            string username, password;
+            cout << "\nTên đăng nhập: "; getline(cin, username);
+            cout << "Mật khẩu: "; getline(cin, password);
 
-        bool found = false;
-        for (auto user : users) {
-            if (user->getUsername() == username && password == user->getPassword()) {
-                found = true;
-                cout << "\n\u2705 Đăng nhập thành công!\n";
-                user->showPersonalInfo();
+            bool found = false;
+            for (auto user : users) {
+                if (user->getUsername() == username && password == user->getPassword()) {
+                    found = true;
+                    cout << "\n\u2705 Đăng nhập thành công!\n";
+                    user->showPersonalInfo();
 
-                if (user->getRole() == Role::User) {
-                    cout << "\n1. Cập nhật thông tin cá nhân\n2. Thoát\nChọn: ";
-                    int opt;
-                    cin >> opt;
-                    cin.ignore();
+                    if (user->getRole() == Role::User) {
+                        while (true) {
+                            cout << "\n1. Cập nhật thông tin cá nhân\n2. Thoát\nChọn: ";
+                            int opt;
+                            cin >> opt;
+                            cin.ignore();
+                            if (opt == 1) {
+                                user->requestUpdateInfo(false, otpSystem);
+                            } else break;
+                        }
+                    } else if (user->getRole() == Role::Manager) {
+                        while (true) {
+                            cout << "\n1. Tạo tài khoản mới\n2. Cập nhật thông tin người dùng khác\n3. Xem danh sách nhóm\n4. Thoát\nChọn: ";
+                            int opt;
+                            cin >> opt;
+                            cin.ignore();
 
-                    if (opt == 1) {
-                        user->requestUpdateInfo(false, otpSystem);
-                    }
-                }
-                else if (user->getRole() == Role::Manager) {
-                    cout << "\n1. Tạo tài khoản mới\n2. Cập nhật thông tin người dùng khác\n3. Xem danh sách nhóm\n4. Thoát\nChọn: ";
-                    int opt;
-                    cin >> opt;
-                    cin.ignore();
-
-                    if (opt == 1) {
-                        UserAccount* newAcc = new UserAccount(UserAccount::createNewAccount());
-                        users.push_back(newAcc);
-                        groups[0].addMember(newAcc);
-                        cout << "\u2705 Tạo tài khoản thành công.\n";
-                    }
-                    else if (opt == 2) {
-                        string targetUsername;
-                        cout << "Nhập tên đăng nhập người cần cập nhật: ";
-                        getline(cin, targetUsername);
-
-                        bool userFound = false;
-                        for (auto u : users) {
-                            if (u->getUsername() == targetUsername && u->getUsername() != "admin") {
-                                userFound = true;
-                                u->requestUpdateInfo(true, otpSystem);
-                                break;
+                            if (opt == 1) {
+                                UserAccount* newAcc = new UserAccount(UserAccount::createNewAccount());
+                                users.push_back(newAcc);
+                                groups[0].addMember(newAcc);
+                                cout << "\u2705 Tạo tài khoản thành công.\n";
                             }
-                        }
+                            else if (opt == 2) {
+                                string targetUsername;
+                                cout << "Nhập tên đăng nhập người cần cập nhật: ";
+                                getline(cin, targetUsername);
 
-                        if (!userFound)
-                            cout << "\u274c Không tìm thấy người dùng.\n";
-                    }
-                    else if (opt == 3) {
-                        cout << "\n========== DANH SÁCH NHÓM ==========\n";
-                        for (const auto& group : groups) {
-                            group.showGroupInfo();
-                            group.saveGroupInfoToFile(group.getGroupName() + ".txt");
+                                bool userFound = false;
+                                for (auto u : users) {
+                                    if (u->getUsername() == targetUsername && u->getUsername() != "admin") {
+                                        userFound = true;
+                                        u->requestUpdateInfo(true, otpSystem);
+                                        break;
+                                    }
+                                }
+                                if (!userFound)
+                                    cout << "\u274c Không tìm thấy người dùng.\n";
+                            }
+                            else if (opt == 3) {
+                                cout << "\n========== DANH SÁCH NHÓM ==========\n";
+                                for (const auto& group : groups) {
+                                    group.showGroupInfo();
+                                    group.saveGroupInfoToFile(group.getGroupName() + ".txt");
+                                }
+                            }
+                            else if (opt == 4) break;
+                            else cout << "Lựa chọn không hợp lệ.\n";
                         }
                     }
+                    break;
                 }
-                break;
+            }
+
+            if (!found) {
+                cout << "\u274c Sai tên đăng nhập hoặc mật khẩu.\n";
             }
         }
+        else if (choice == 2) {
+            cout << "\n--- TẠO TÀI KHOẢN MỚI ---\n";
+            string roleChoice;
+            while (true) {
+                cout << "Loại tài khoản (user/admin): ";
+                getline(cin, roleChoice);
+                if (roleChoice == "user" || roleChoice == "admin") break;
+                cout << "Lựa chọn không hợp lệ. Vui lòng nhập lại.\n";
+            }
 
-        if (!found) {
-            cout << "\u274c Sai tên đăng nhập hoặc mật khẩu.\n";
+            Role newRole = (roleChoice == "admin") ? Role::Manager : Role::User;
+
+            string user, pass, name, email, phone;
+            cout << "Tên đăng nhập: "; getline(cin, user);
+            cout << "Mật khẩu: "; getline(cin, pass);
+            cout << "Họ tên: "; getline(cin, name);
+            cout << "Email: "; getline(cin, email);
+            cout << "Số điện thoại: "; getline(cin, phone);
+
+            UserAccount* newAcc = new UserAccount(user, pass, name, email, phone, newRole);
+            users.push_back(newAcc);
+            if (newRole == Role::User) {
+    groups[0].addMember(newAcc);  // chỉ thêm nếu là người dùng thường
+}
+
+            cout << "\u2705 Tạo tài khoản " << (newRole == Role::Manager ? "quản lý" : "người dùng") << " thành công.\n";
+        }
+        else {
+            cout << "\u274c Lựa chọn không hợp lệ.\n";
         }
     }
 
