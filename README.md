@@ -60,17 +60,18 @@
 
 ## Chú thích thư viện
 
-| Thư viện        | Mục đích sử dụng                                               |
-|------------------|----------------------------------------------------------------|
-| <iostream>       | Nhập xuất cơ bản                                               |
-| <fstream>        | Đọc/ghi file                                                   |
-| <string>         | Xử lý chuỗi                                                    |
-| <vector>         | Lưu danh sách người dùng, giao dịch                            |
-| <ctime>          | Sinh OTP, thời gian                                             |
-| <cstdlib>        | rand(), srand(), sinh mật khẩu tự động                          |
-| <sstream>        | Đọc file và tách chuỗi                                          |
-| <map>            | Lưu danh sách người dùng theo username                         |
-| <clocale>        | Hỗ trợ hiển thị Unicode, tiếng Việt                             |
+| Thư viện              | Mục đích sử dụng                                 |
+|------------------------|--------------------------------------------------|
+| `#include <iostream>`  | Nhập xuất cơ bản                                 |
+| `#include <fstream>`   | Đọc/ghi file                                     |
+| `#include <string>`    | Xử lý chuỗi                                      |
+| `#include <vector>`    | Lưu danh sách người dùng, giao dịch              |
+| `#include <ctime>`     | Sinh OTP, thời gian                              |
+| `#include <cstdlib>`   | rand(), srand(), sinh mật khẩu tự động          |
+| `#include <sstream>`   | Đọc file và tách chuỗi                           |
+| `#include <map>`       | Lưu danh sách người dùng theo username           |
+| `#include <clocale>`   | Hỗ trợ hiển thị Unicode, tiếng Việt              |
+
 
 ---
 
