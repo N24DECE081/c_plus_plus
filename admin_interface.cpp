@@ -10,7 +10,7 @@ extern TransactionManager tm;
 
 class SystemManager {
 public:
-    void managerMenu(string u) {
+   void managerMenu(string u) {
         int ch;
         while (true) {
             cout << "\n--- Menu quản lý ---\n";
@@ -37,28 +37,39 @@ public:
                 cout << "Người nhận: "; cin >> target;
 
                 if (!users.count(target)) {
-                    cout << "❌ Không tìm thấy người dùng.\n"; continue;
+                    cout << "❌ Không tìm thấy người dùng.\n";
+                    continue;
                 }
+
                 if (target == u) {
-                    cout << "❌ Không thể chuyển cho chính mình.\n"; continue;
+                    cout << "❌ Không thể chuyển cho chính mình.\n";
+                    continue;
                 }
 
                 cout << "Số điểm: "; cin >> amt;
+                if (amt <= 0) {
+                    cout << "❌ Số điểm phải lớn hơn 0.\n";
+                    continue;
+                }
+
                 string code = otp.generateOTP();
                 cout << "Nhập mã OTP: "; string in; cin >> in;
 
                 if (!otp.validateOTP(in)) {
-                    cout << "❌ Sai OTP. Hủy giao dịch.\n"; continue;
+                    cout << "❌ Sai OTP. Hủy giao dịch.\n";
+                    continue;
                 }
 
-                bool success = TransferService::transferPoints(
-                    users[u].wallet, users[target].wallet,
-                    amt, "Admin chuyển điểm", tm
-                );
-
-                if (success) cout << "✅ Giao dịch thành công.\n";
-                else cout << "❌ Số dư không đủ.\n";
+                if (users[u].wallet.withdraw(amt)) {
+                    users[target].wallet.deposit(amt);
+                    Transaction tx = {users[u].wallet.getID(), users[target].wallet.getID(), amt, "Admin chuyển điểm"};
+                    users[u].wallet.addTransaction(tx);
+                    users[target].wallet.addTransaction(tx);
+                    saveTransactionToFile(tx);
+                    cout << "✅ Giao dịch thành công.\n";
+                } else {
+                    cout << "❌ Số dư admin không đủ.\n";
+                }
             }
         }
     }
-};
