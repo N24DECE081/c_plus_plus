@@ -45,7 +45,6 @@
 - Tạo tài khoản mới cho người dùng.
 - Cập nhật tài khoản khác (cần xác thực OTP).
 - Xem thông tin nhóm, lịch sử giao dịch toàn hệ thống.
-- Cho phép quản trị viên chuyển điểm hộ cho người dùng.
 
 ---
 
