@@ -315,6 +315,10 @@ void registerUserAccount() {
                 cout << "Chuyển đến (username): "; cin >> to;
                 if (!users.count(to)) { cout << "❌ Không tìm thấy người nhận.\n"; continue; }
                 cout << "Số điểm: "; cin >> amt;
+                if (amt <= 0) {
+                    cout << "❌ Số điểm phải lớn hơn 0.\n";
+                    continue;
+                }
                 string code = otp.generateOTP();
                 cout << "Nhập mã OTP: "; string in; cin >> in;
                 if (!otp.validateOTP(in)) { cout << "❌ Sai OTP.\n"; continue; }
@@ -372,6 +376,10 @@ void registerUserAccount() {
                 }
 
                 cout << "Số điểm: "; cin >> amt;
+                if (amt <= 0) {
+                    cout << "❌ Số điểm phải lớn hơn 0.\n";
+                    continue;
+                }
 
                 string code = otp.generateOTP();
                 cout << "Nhập mã OTP: "; string in; cin >> in;
