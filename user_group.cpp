@@ -52,6 +52,7 @@ public:
     }
 
     void updateUserInfo(OTP& otp, bool isAdmin = false);
+    
 };
 
 class Group {
@@ -65,3 +66,42 @@ public:
         for (auto m : members) m->displayUserInfo();
     }
 };
+
+void userMenu(string u) {
+        int ch;
+        while (true) {
+            cout << "\n--- Menu người dùng ---\n";
+            cout << "1. Xem ví\n2. Chuyển điểm\n3. Cập nhật thông tin\n4. Sao lưu tài khoản\n5. Thoát\nChọn: ";
+            cin >> ch;
+            if (ch == 5) break;
+            if (ch == 1) {
+                users[u].wallet.showBalance();
+                users[u].wallet.showHistory();
+            } else if (ch == 2) {
+                string to; int amt;
+                cout << "Chuyển đến (username): "; cin >> to;
+                if (!users.count(to)) { cout << "❌ Không tìm thấy người nhận.\n"; continue; }
+                cout << "Số điểm: "; cin >> amt;
+                if (amt <= 0) {
+                    cout << "❌ Số điểm phải lớn hơn 0.\n";
+                    continue;
+                }
+                string code = otp.generateOTP();
+                cout << "Nhập mã OTP: "; string in; cin >> in;
+                if (!otp.validateOTP(in)) { cout << "❌ Sai OTP.\n"; continue; }
+                if (users[u].wallet.withdraw(amt)) {
+                    users[to].wallet.deposit(amt);
+                    Transaction tx = {users[u].wallet.getID(), users[to].wallet.getID(), amt, "Thành công"};
+                    users[u].wallet.addTransaction(tx);
+                    users[to].wallet.addTransaction(tx);
+                    saveTransactionToFile(tx);
+                    cout << "✅ Giao dịch thành công.\n";
+                } else cout << "❌ Không đủ số dư.\n";
+            } else if (ch == 3) {
+                users[u].updateUserInfo(otp);
+            } else if (ch == 4) {
+                users[u].backupToFile();
+                cout << "✅ Đã sao lưu tài khoản.\n";
+            }
+        }
+    }
