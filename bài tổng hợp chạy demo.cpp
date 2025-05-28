@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -187,6 +188,8 @@ public:
 
     string line;
     int count = 0;
+
+    // Xóa tất cả users trừ admin
     string adminPass = "admin123";
     User adminUser;
     if (users.count("admin")) {
@@ -214,6 +217,7 @@ public:
         count++;
     }
 
+    // Đảm bảo admin tồn tại
     users["admin"] = adminUser;
     groups[0].addMember(&users["admin"]);
 
